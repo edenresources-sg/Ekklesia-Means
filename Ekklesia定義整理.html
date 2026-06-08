@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ekklesia 定義整理</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Cinzel:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --navy-light: #2a3d6e;
+    --gold: #b8925a;
+    --gold-light: #d4aa78;
+    --cream: #f8f5ef;
+    --cream-dark: #ede8de;
+    --stone: #8a8070;
+    --ink: #2c2416;
+    --ink-light: #4a4236;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 400;
+    line-height: 1.85;
+  }
+
+  /* Header */
+  .page-header {
+    background: var(--navy);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(184,146,90,0.04) 40px, rgba(184,146,90,0.04) 41px),
+      repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(184,146,90,0.04) 40px, rgba(184,146,90,0.04) 41px);
+  }
+  .greek-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    position: relative;
+  }
+  .greek-sub {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.9rem, 2vw, 1.15rem);
+    color: rgba(212,170,120,0.6);
+    letter-spacing: 0.4em;
+    margin-top: 8px;
+    position: relative;
+  }
+  .zh-title {
+    color: rgba(255,255,255,0.92);
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    margin-top: 18px;
+    position: relative;
+  }
+  .header-rule {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 20px auto;
+    position: relative;
+  }
+
+  /* Layout */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 28px 80px;
+  }
+
+  /* Section */
+  .section {
+    margin-top: 56px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:nth-child(1) { animation-delay: 0.1s; }
+  .section:nth-child(2) { animation-delay: 0.2s; }
+  .section:nth-child(3) { animation-delay: 0.3s; }
+  .section:nth-child(4) { animation-delay: 0.4s; }
+  .section:nth-child(5) { animation-delay: 0.5s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 700;
+    color: var(--navy);
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--navy);
+    margin-bottom: 22px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Subsection */
+  .subsection-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy-light);
+    margin: 26px 0 10px;
+    padding-left: 14px;
+    border-left: 3px solid var(--gold);
+    letter-spacing: 0.04em;
+  }
+
+  p {
+    font-size: 0.97rem;
+    color: var(--ink-light);
+    margin-bottom: 12px;
+  }
+
+  /* Etymology box */
+  .etymology-box {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 28px 32px;
+    display: flex;
+    gap: 0;
+    margin: 24px 0;
+    overflow: hidden;
+  }
+  .etym-part {
+    flex: 1;
+    text-align: center;
+    padding: 0 20px;
+  }
+  .etym-part:not(:last-child) {
+    border-right: 1px solid rgba(184,146,90,0.3);
+  }
+  .etym-greek {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .etym-roman {
+    font-size: 0.8rem;
+    color: rgba(212,170,120,0.7);
+    letter-spacing: 0.15em;
+    margin-top: 4px;
+  }
+  .etym-meaning {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.8);
+    margin-top: 8px;
+    font-weight: 300;
+  }
+  .etym-plus {
+    display: flex;
+    align-items: center;
+    color: var(--gold-light);
+    font-size: 1.4rem;
+    padding: 0 8px;
+    opacity: 0.5;
+  }
+  .etym-result {
+    display: flex;
+    align-items: center;
+    padding: 0 16px 0 4px;
+    color: rgba(255,255,255,0.5);
+    font-size: 1.4rem;
+  }
+
+  /* Hebrew note */
+  .note-box {
+    background: var(--cream-dark);
+    border-left: 3px solid var(--gold);
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+    margin: 14px 0;
+    font-size: 0.92rem;
+    color: var(--ink-light);
+  }
+  .note-box strong { color: var(--navy); }
+
+  /* Bullet list */
+  ul.styled {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 14px;
+  }
+  ul.styled li {
+    padding: 7px 0 7px 22px;
+    position: relative;
+    font-size: 0.95rem;
+    color: var(--ink-light);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  ul.styled li:last-child { border-bottom: none; }
+  ul.styled li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 17px;
+    width: 7px;
+    height: 7px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+  }
+
+  /* Scripture references */
+  .scripture {
+    background: white;
+    border: 1px solid var(--cream-dark);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 10px 0;
+    font-size: 0.92rem;
+  }
+  .scripture-ref {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .scripture-text { color: var(--ink-light); }
+
+  /* Two column */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+  .col-card {
+    background: white;
+    border: 1px solid var(--cream-dark);
+    border-top: 3px solid var(--navy);
+    border-radius: 0 0 6px 6px;
+    padding: 18px;
+  }
+  .col-card-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  /* Summary table */
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.93rem;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  .summary-table thead tr {
+    background: var(--navy);
+    color: white;
+  }
+  .summary-table thead th {
+    padding: 14px 18px;
+    text-align: left;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+  }
+  .summary-table tbody tr:nth-child(odd)  { background: white; }
+  .summary-table tbody tr:nth-child(even) { background: #f2ede4; }
+  .summary-table tbody tr:hover { background: #e8e1d4; transition: background 0.2s; }
+  .summary-table td {
+    padding: 13px 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    vertical-align: top;
+  }
+  .summary-table td:first-child {
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+    font-size: 0.88rem;
+    letter-spacing: 0.05em;
+  }
+  .summary-table td:last-child { color: var(--ink-light); }
+
+  /* Footer */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.35);
+    text-align: center;
+    padding: 24px;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="greek-title">Ekklesia — ἐκκλησία</div>
+  <div class="greek-sub">ecclesia</div>
+  <div class="header-rule"></div>
+  <div class="zh-title">定　義　整　理</div>
+</header>
+
+<div class="container">
+
+  <!-- 一 -->
+  <section class="section">
+    <div class="section-num">Section I</div>
+    <h2 class="section-title">字源與基本字義</h2>
+    <p>Ekklesia 是希臘文（ἐκκλησία），由兩個字根組成：</p>
+
+    <div class="etymology-box">
+      <div class="etym-part">
+        <div class="etym-greek">ek</div>
+        <div class="etym-roman">ἐκ</div>
+        <div class="etym-meaning">出來 / out</div>
+      </div>
+      <div class="etym-plus">+</div>
+      <div class="etym-part">
+        <div class="etym-greek">kaleo</div>
+        <div class="etym-roman">καλέω</div>
+        <div class="etym-meaning">呼召 / to call</div>
+      </div>
+      <div class="etym-result">→</div>
+      <div class="etym-part">
+        <div class="etym-greek" style="font-size:1.1rem">被呼召出來</div>
+        <div class="etym-roman">called out ones</div>
+        <div class="etym-meaning">聚集的人群</div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>希伯來文對應詞：</strong>Kahal（קהל）——同樣意指「被呼召出來的一群人」。因此，Ekklesia 指的是<strong>人</strong>，而非建築物，是一個被神呼召的群體。
+    </div>
+  </section>
+
+  <!-- 二 -->
+  <section class="section">
+    <div class="section-num">Section II</div>
+    <h2 class="section-title">古希臘世俗用法</h2>
+    <p>在基督教採用此詞之前，Ekklesia 在希臘城邦中是一個政治術語：</p>
+    <ul class="styled">
+      <li>指城邦的公民大會或議會</li>
+      <li>泛指文化、經濟、政治的集合體</li>
+      <li>是一群出來聚集、代表城市的人，共同商討、裁決和解決城市事務</li>
+    </ul>
+    <p style="margin-top:6px; font-size:0.88rem; color:var(--stone)">
+      例：使徒行傳 19:39「聚集（ekklesia）斷定」，指的便是世俗性的公民大會。
+    </p>
+  </section>
+
+  <!-- 三 -->
+  <section class="section">
+    <div class="section-num">Section III</div>
+    <h2 class="section-title">新約聖經中的用法</h2>
+    <p>Ekklesia 在新約聖經中共出現約 107 次，通常被翻譯為「<strong>教會</strong>」，可分為兩種用法：</p>
+
+    <div class="two-col" style="margin-top:20px">
+      <div class="col-card">
+        <div class="col-card-title">▎指基督徒群體</div>
+        <div class="scripture">
+          <span class="scripture-ref">使徒行傳 11:26</span>
+          <span class="scripture-text">「巴拿巴和掃羅在安提阿與教會（ekklesia）聚會。」</span>
+        </div>
+        <div class="scripture">
+          <span class="scripture-ref">哥林多前書 15:9</span>
+          <span class="scripture-text">保羅說他曾逼迫神的教會（ekklesia）。</span>
+        </div>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">▎指一般性聚集</div>
+        <div class="scripture">
+          <span class="scripture-ref">使徒行傳 7:38</span>
+          <span class="scripture-text">司提反稱以色列人民為「曠野的集會（ekklesia）」。</span>
+        </div>
+        <div class="scripture">
+          <span class="scripture-ref">使徒行傳 19:39</span>
+          <span class="scripture-text">召集民眾討論律法問題的集會。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 四 -->
+  <section class="section">
+    <div class="section-num">Section IV</div>
+    <h2 class="section-title">神學層面的涵義</h2>
+    <p>新約聖經中的 ekklesia，通常不單是指全體會眾，而是<strong>被任命和授權的機構</strong>，用以代表、管理和領導上帝的廣大子民。</p>
+    <p>主耶穌用 ekklesia「教會」（太 18:17–20）來指基督徒群體時，並非叫我們出離世界、不管世事，而是一起商討、裁決、解決世界的事務，因此教會被呼召要轉化世界。</p>
+    
+    <h3 class="subsection-title">神呼召教會的三重使命</h3>
+    <ul class="styled">
+      <li><strong>脫離罪</strong>——「你們要聖潔，因為我是聖潔的」（彼得前書 1:16）</li>
+      <li><strong>彼此交通</strong>——與其他信徒建立群體（使徒行傳 2:42）</li>
+      <li><strong>成為光</strong>——「你們是世上的光」（馬太福音 5:14）</li>
+    </ul>
+  </section>
+
+  <!-- 五 -->
+  <section class="section">
+    <div class="section-num">Section V</div>
+    <h2 class="section-title">定義摘要表</h2>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>面向</th>
+          <th>說明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>字源</td>
+          <td>希臘文 ek（出來）＋ kaleo（呼召）</td>
+        </tr>
+        <tr>
+          <td>字義</td>
+          <td>被呼召出來聚集的人群</td>
+        </tr>
+        <tr>
+          <td>世俗用法</td>
+          <td>城邦議會、公民大會，有議決功能</td>
+        </tr>
+        <tr>
+          <td>新約用法</td>
+          <td>教會、信徒群體（共出現約 107 次）</td>
+        </tr>
+        <tr>
+          <td>神學意涵</td>
+          <td>被神呼召、代表神的子民、有治理與裁決的功能</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+
+<footer>
+  Ekklesia ἐκκλησία &nbsp;·&nbsp; 字源 · 字義 · 聖經用法 · 神學涵義
+</footer>
+
+</body>
+</html>
